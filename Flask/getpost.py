@@ -30,6 +30,14 @@ def form():
         name = request.form.get("name")
         return f"Hello, {name}! Your form has been submitted."
     return render_template("form.html")  # Render a form template for GET requests
+@app.route("/submit", methods=["POST"])
+def submit(): 
+    if request.method == "POST":  
+    # Process the form data here
+     name = request.form.get("name")
+     return f"Hello, {name}! Your form has been submitted."  
+    return render_template("form.html")  # Render a form template for GET requests
+
 
 
 if __name__ == "__main__":# this block ensures that the Flask application runs only when the script is executed directly, not when imported as a module.

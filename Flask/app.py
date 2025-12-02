@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,render_template 
 
 
 '''
@@ -16,11 +16,11 @@ def welcome():
 
 @app.route("/index")
 def index():
-    return "This is the index page of our Flask Application"  # This function returns a message for the "/index" URL.
+    return render_template("index.html")  # This function renders the "index.html" template when the "/index" URL is accessed.
  
- 
-
-
+@app.route("/about")
+def about():
+    return render_template("about.html")  # This function renders the "about.html" template when the "/about" URL is accessed.
 
 if __name__ == "__main__":# this block ensures that the Flask application runs only when the script is executed directly, not when imported as a module.
     app.run(debug = True)  # This starts the Flask development server with debug mode enabled.

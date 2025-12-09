@@ -1,3 +1,15 @@
+## Building URL Dynamically with Variable Rules
+## Jinja Templating to Display Results
+
+##Jinja2 Templte Engine
+'''
+{{ variable }} : Print the value of a variable.expressions to print output in html
+{% control structures %} : For loops, if statements, etc. for controlling the flow of the template.conditional statements
+{#...#} : Comments that will not be rendered in the final output.
+
+'''
+
+
 from flask import Flask,render_template,request
 
 
@@ -35,10 +47,31 @@ def submit():
 #variable rules 
 @app.route("/success/<int:score>")
 def success(score):
-    return "The person has passed and the score is " + str(score)    
+    res=''
+    if score>=50:
+        res='passed'
+    else:
+        res='failed'
+    return render_template("result.html",results=res)
 
-
-
+@app.route("/successres/<int:score>")
+def successres(score):
+    res=''
+    if score>=50:
+        res='passed'
+    else:
+        res='failed'
+    exp = {'score':score,'result':res}    
+    return render_template("result1.html",results=exp)
+# if conditional statements in jinja template
+@app.route("/successif/<int:score>")
+def successif(score):
+    # res=''
+    # if score>=50:
+    #     res='passed'
+    # else:
+    #     res='failed'
+    return render_template("result.html",results=score)
 
 if __name__ == "__main__":# this block ensures that the Flask application runs only when the script is executed directly, not when imported as a module.
     app.run(debug = True)  # This starts the Flask development server with debug mode enabled.
